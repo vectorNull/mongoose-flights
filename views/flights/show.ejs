@@ -11,9 +11,14 @@
   <div><%= flight.departs %></div>
   <div>Destinations: </div>
     <% flight.destinations.forEach(function(d) { %>
-      <div><%= d.airport %></div>
-      <div><%= d.arrival.toLocalDateString %></div>
-    <% }) %> 
+      <div><%= d.airport %></div><br>
+      <div><%= d.arrival %></div><br><br>
+    <% }) %> <br>
+  <div>Tickets: </div>
+    <% tickets.forEach(function(t) { %>
+      <div>Seat# <%= t.seat %></div><br>
+      <div>Price: <%= t.price %></div><br><br>
+    <% }) %>
 </section>
 
 <br><br><h2>Add Destination</h2>
@@ -23,6 +28,16 @@
    <input type="text" name="airport"></input>
    <label>Arrival:</label>
    <input type="date" name="arrival"></input>
+   <input type="submit" value="Add">
+ </form>
+
+ <h2>Add a ticket</h2>
+ <form id="add-destination-form" method="POST"
+   action="/flights/<%= flight._id %>/tickets">
+   <label>Seat:</label>
+   <input required pattern="[A-F][1-9]\d?" name="seat"></input>
+   <label>Price:</label>
+   <input type="number" name="price"></input>
    <input type="submit" value="Add">
  </form>
 
